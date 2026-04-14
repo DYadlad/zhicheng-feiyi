@@ -74,7 +74,7 @@ def restore_image():
             response = requests.post(
                 restore_api_url,
                 files={'image': open(filepath, 'rb')},
-                headers={'api-key': 'sk-03df816b15a64616ad000795cf30afce'},
+              headers={'api-key': os.environ.get('DEEPAI_API_KEY', '')},
                 timeout=10
             )
             
@@ -131,7 +131,7 @@ def chat_api():
         
         try:
             api_url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
-            api_key = "sk-03df816b15a64616ad000795cf30afce"
+           api_key = os.environ.get('DASHSCOPE_API_KEY', '')
             
             headers = {
                 'Authorization': f'Bearer {api_key}',
