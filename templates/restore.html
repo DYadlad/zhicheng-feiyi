@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片修复 - 智承非遗</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">智承非遗</div>
+            <ul class="nav-menu">
+                <li><a href="/">首页</a></li>
+                <li><a href="/showcase">非遗展示</a></li>
+                <li><a href="/restore" class="active">图片修复</a></li>
+                <li><a href="/chat">智能问答</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>图片修复</h1>
+            <p>利用AI技术修复非遗老照片，让珍贵的历史影像重现光彩</p>
+        </div>
+    </header>
+
+    <section class="restore-section">
+        <div class="container">
+            <div class="restore-container">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <h3>点击或拖拽上传图片</h3>
+                        <p>支持 JPG、PNG、GIF 格式，最大 16MB</p>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        <button class="btn btn-primary" id="selectFileBtn">选择文件</button>
+                    </div>
+                </div>
+
+                <div class="preview-area" id="previewArea" style="display: none;">
+                    <div class="preview-grid">
+                        <div class="preview-item">
+                            <h3>原始图片</h3>
+                            <div class="image-container">
+                                <img id="originalImage" src="" alt="原始图片">
+                            </div>
+                            <div class="image-info" id="originalInfo"></div>
+                        </div>
+                        <div class="preview-item">
+                            <h3>修复后图片</h3>
+                            <div class="image-container" id="restoredContainer">
+                                <div class="placeholder" id="restoredPlaceholder">
+                                    <p>等待修复...</p>
+                                </div>
+                                <img id="restoredImage" src="" alt="修复后图片" style="display: none;">
+                            </div>
+                            <div class="image-info" id="restoredInfo"></div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="reuploadBtn">重新上传</button>
+                        <button class="btn btn-primary" id="restoreBtn" disabled>开始修复</button>
+                        <button class="btn btn-success" id="downloadBtn" style="display: none;">下载修复后图片</button>
+                    </div>
+                </div>
+
+                <div class="progress-area" id="progressArea" style="display: none;">
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">正在修复图片，请稍候...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="restore-info">
+                <h3>修复说明</h3>
+                <ul>
+                    <li>本功能使用AI技术对老照片进行超分辨率修复</li>
+                    <li>可以提升图片清晰度，增强细节表现</li>
+                    <li>适合修复非遗相关的历史照片、文献图片等</li>
+                    <li>修复过程可能需要几秒钟到几分钟，请耐心等待</li>
+                    <li>建议上传清晰度较高的图片以获得更好的修复效果</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>智承非遗</h3>
+                    <p>用科技守护文明，让非遗文化焕发新生</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/showcase">非遗展示</a></li>
+                        <li><a href="/restore">图片修复</a></li>
+                        <li><a href="/chat">智能问答</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>致力于利用人工智能技术，保护和传播中国优秀的非物质文化遗产。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 智承非遗. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/restore.js') }}"></script>
+</body>
+</html>

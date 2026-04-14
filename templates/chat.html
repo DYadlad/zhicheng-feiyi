@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能问答 - 智承非遗</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">智承非遗</div>
+            <ul class="nav-menu">
+                <li><a href="/">首页</a></li>
+                <li><a href="/showcase">非遗展示</a></li>
+                <li><a href="/restore">图片修复</a></li>
+                <li><a href="/chat" class="active">智能问答</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>智能问答</h1>
+            <p>AI助手为您解答关于非遗文化的各种问题</p>
+        </div>
+    </header>
+
+    <section class="chat-section">
+        <div class="container">
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p>您好！我是智承非遗的AI助手，专门为您解答关于中国非物质文化遗产的问题。</p>
+                            <p>您可以问我关于剪纸、昆曲、皮影、木雕等非遗文化的任何问题，我会尽力为您提供准确、专业的解答。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <div class="quick-questions">
+                        <span class="quick-label">快速提问：</span>
+                        <button class="quick-btn" data-question="什么是剪纸艺术？">什么是剪纸艺术？</button>
+                        <button class="quick-btn" data-question="昆曲有什么特点？">昆曲有什么特点？</button>
+                        <button class="quick-btn" data-question="皮影戏的历史起源是什么？">皮影戏的历史起源是什么？</button>
+                        <button class="quick-btn" data-question="木雕有哪些技法？">木雕有哪些技法？</button>
+                    </div>
+                    <div class="input-group">
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="请输入您的问题..." 
+                            rows="3"
+                        ></textarea>
+                        <button class="btn btn-primary" id="sendBtn">
+                            <span class="btn-text">发送</span>
+                            <span class="btn-loading" style="display: none;">发送中...</span>
+                        </button>
+                    </div>
+                    <p class="input-hint">按 Enter 发送，Shift + Enter 换行</p>
+                </div>
+            </div>
+
+            <div class="chat-info">
+                <h3>使用说明</h3>
+                <ul>
+                    <li>本功能对接通义千问大模型，提供专业的非遗文化知识咨询服务</li>
+                    <li>可以询问关于剪纸、昆曲、皮影、木雕等非遗文化的各种问题</li>
+                    <li>AI助手会根据问题提供详细、准确的解答</li>
+                    <li>支持连续对话，您可以基于AI的回答继续提问</li>
+                    <li>建议提问时尽量具体，这样能获得更准确的回答</li>
+                </ul>
+                
+                <h3>示例问题</h3>
+                <div class="example-questions">
+                    <div class="example-item">剪纸艺术起源于哪个朝代？</div>
+                    <div class="example-item">昆曲的经典剧目有哪些？</div>
+                    <div class="example-item">皮影戏的制作工艺是什么？</div>
+                    <div class="example-item">东阳木雕有什么特色？</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>智承非遗</h3>
+                    <p>用科技守护文明，让非遗文化焕发新生</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/showcase">非遗展示</a></li>
+                        <li><a href="/restore">图片修复</a></li>
+                        <li><a href="/chat">智能问答</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>致力于利用人工智能技术，保护和传播中国优秀的非物质文化遗产。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 智承非遗. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>

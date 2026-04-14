@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智承非遗 - 传统文化数字化保护与传播平台</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">智承非遗</div>
+            <ul class="nav-menu">
+                <li><a href="/" class="active">首页</a></li>
+                <li><a href="/showcase">非遗展示</a></li>
+                <li><a href="/restore">图片修复</a></li>
+                <li><a href="/chat">智能问答</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero-title">智承非遗</h1>
+            <p class="hero-subtitle">基于多模态AI的传统文化数字化保护与传播平台</p>
+            <p class="hero-description">用科技守护文明，让非遗文化焕发新生</p>
+            <div class="hero-buttons">
+                <a href="/showcase" class="btn btn-primary">探索非遗</a>
+                <a href="/chat" class="btn btn-secondary">智能问答</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">平台特色</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>非遗文化展示</h3>
+                    <p>展示剪纸、昆曲、皮影、木雕四大非遗类别，深入了解传统文化精髓</p>
+                    <a href="/showcase" class="feature-link">了解更多 →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>图片修复</h3>
+                    <p>利用AI技术修复非遗老照片，让珍贵的历史影像重现光彩</p>
+                    <a href="/restore" class="feature-link">立即体验 →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>智能问答</h3>
+                    <p>对接通义千问大模型，提供专业的非遗文化知识咨询服务</p>
+                    <a href="/chat" class="feature-link">开始提问 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-preview">
+        <div class="container">
+            <h2 class="section-title">非遗文化概览</h2>
+            <div class="heritage-grid">
+                <div class="heritage-item">
+                    <div class="heritage-icon">✂️</div>
+                    <h3>剪纸艺术</h3>
+                    <p>中国剪纸是一种用剪刀或刻刀在纸上剪刻花纹的民间艺术，2009年入选联合国教科文组织非物质文化遗产名录。</p>
+                </div>
+                <div class="heritage-item">
+                    <div class="heritage-icon">🎭</div>
+                    <h3>昆曲艺术</h3>
+                    <p>昆曲是中国最古老的剧种之一，被称为"百戏之祖"，2001年入选联合国教科文组织首批非物质文化遗产名录。</p>
+                </div>
+                <div class="heritage-item">
+                    <div class="heritage-icon">🎪</div>
+                    <h3>皮影戏</h3>
+                    <p>皮影戏是中国民间古老的传统艺术，2011年入选联合国教科文组织非物质文化遗产名录。</p>
+                </div>
+                <div class="heritage-item">
+                    <div class="heritage-icon">🪵</div>
+                    <h3>木雕艺术</h3>
+                    <p>木雕是雕塑的一种，在中国被称为"民间工艺"，2006年入选第一批国家级非物质文化遗产名录。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">非遗类别</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">知识条目</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">智能服务</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">AI</div>
+                    <div class="stat-label">技术驱动</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>智承非遗</h3>
+                    <p>用科技守护文明，让非遗文化焕发新生</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/showcase">非遗展示</a></li>
+                        <li><a href="/restore">图片修复</a></li>
+                        <li><a href="/chat">智能问答</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>致力于利用人工智能技术，保护和传播中国优秀的非物质文化遗产。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 智承非遗. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
