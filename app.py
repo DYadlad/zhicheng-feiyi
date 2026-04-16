@@ -74,7 +74,7 @@ def restore_image():
         
         try:
             restore_api_url = "https://api.deepai.org/api/torch-srgan"
-            api_key = os.environ.get('DEEPAI_API_KEY', 'sk-03df816b15a64616ad000795cf30afce')
+            api_key = os.environ.get('DEEPAI_API_KEY', 'D48C22D9-12F7-47BB-810A-98BF3DFB5FCB')
             
             print(f"开始调用 DeepAI API，文件：{filename}")
             
