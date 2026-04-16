@@ -256,9 +256,9 @@ def get_heritage_data():
             "techniques": ["折叠剪法", "阴刻阳刻", "套色剪纸", "立体剪纸"],
             "regions": ["河北蔚县", "山西广灵", "江苏扬州", "浙江乐清"],
             "images": [
-                {"title": "传统窗花", "description": "春节贴窗花是传统习俗"},
-                {"title": "生肖剪纸", "description": "十二生肖主题剪纸"},
-                {"title": "婚庆剪纸", "description": "婚礼装饰用剪纸"}
+                {"title": "传统窗花", "description": "春节贴窗花是传统习俗", "image_url": "/static/images/paper-cutting/window-decoration.jpg"},
+                {"title": "生肖剪纸", "description": "十二生肖主题剪纸", "image_url": "/static/images/paper-cutting/zodiac.jpg"},
+                {"title": "婚庆剪纸", "description": "婚礼装饰用剪纸", "image_url": "/static/images/paper-cutting/wedding.jpg"}
             ]
         },
         "昆曲": {
@@ -268,9 +268,9 @@ def get_heritage_data():
             "techniques": ["唱腔艺术", "身段表演", "脸谱化妆", "服饰道具"],
             "regions": ["江苏苏州", "浙江杭州", "上海", "北京"],
             "images": [
-                {"title": "牡丹亭", "description": "昆曲经典剧目"},
-                {"title": "长生殿", "description": "历史题材名剧"},
-                {"title": "桃花扇", "description": "爱情悲剧代表作"}
+                {"title": "牡丹亭", "description": "昆曲经典剧目", "image_url": "/static/images/kunqu/peony-pavilion.jpg"},
+                {"title": "长生殿", "description": "历史题材名剧", "image_url": "/static/images/kunqu/longevity-hall.jpg"},
+                {"title": "桃花扇", "description": "爱情悲剧代表作", "image_url": "/static/images/kunqu/peach-blossom-fan.jpg"}
             ]
         },
         "皮影": {
@@ -280,9 +280,9 @@ def get_heritage_data():
             "techniques": ["皮影制作", "操纵表演", "唱腔艺术", "灯光效果"],
             "regions": ["陕西华县", "河北唐山", "山西孝义", "四川成都"],
             "images": [
-                {"title": "传统皮影", "description": "精美的皮影人物造型"},
-                {"title": "皮影舞台", "description": "传统皮影戏台"},
-                {"title": "皮影道具", "description": "各种皮影道具"}
+                {"title": "传统皮影", "description": "精美的皮影人物造型", "image_url": "/static/images/shadow-puppet/traditional.jpg"},
+                {"title": "皮影舞台", "description": "传统皮影戏台", "image_url": "/static/images/shadow-puppet/stage.jpg"},
+                {"title": "皮影道具", "description": "各种皮影道具", "image_url": "/static/images/shadow-puppet/props.jpg"}
             ]
         },
         "木雕": {
@@ -292,9 +292,9 @@ def get_heritage_data():
             "techniques": ["浮雕", "圆雕", "镂空雕", "透雕"],
             "regions": ["浙江东阳", "福建莆田", "广东潮州", "江苏苏州"],
             "images": [
-                {"title": "东阳木雕", "description": "浙江东阳传统木雕"},
-                {"title": "建筑木雕", "description": "古建筑木雕装饰"},
-                {"title": "家具木雕", "description": "传统家具雕刻"}
+                {"title": "东阳木雕", "description": "浙江东阳传统木雕", "image_url": "/static/images/wood-carving/dongyang.jpg"},
+                {"title": "建筑木雕", "description": "古建筑木雕装饰", "image_url": "/static/images/wood-carving/architecture.jpg"},
+                {"title": "家具木雕", "description": "传统家具雕刻", "image_url": "/static/images/wood-carving/furniture.jpg"}
             ]
         }
     }

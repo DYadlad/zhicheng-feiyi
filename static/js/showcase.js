@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const regionsHtml = heritage.regions.map(r => `<span class="tag">${r}</span>`).join('');
         const imagesHtml = heritage.images.map(img => `
             <div class="image-item">
+                ${img.image_url ? `<img src="${img.image_url}" alt="${img.title}" class="heritage-image">` : ''}
                 <h4>${img.title}</h4>
                 <p>${img.description}</p>
             </div>
