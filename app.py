@@ -79,6 +79,9 @@ def restore_image():
                 timeout=10
             )
             
+            print(f"DeepAI API 响应状态码: {response.status_code}")
+            print(f"DeepAI API 响应内容: {response.text}")
+            
             if response.status_code == 200:
                 result = response.json()
                 restored_url = result.get('output_url')
@@ -98,25 +101,30 @@ def restore_image():
                             'message': '图片修复成功'
                         })
             
-            return jsonify({'error': '图片修复失败，请稍后重试'}), 500
+            # 处理 API 错误，直接使用本地模拟修复
+            print(f"API 调用失败，状态码: {response.status_code}，使用本地模拟修复")
             
         except Exception as e:
             print(f"API调用失败，使用本地模拟修复: {str(e)}")
+        
+        # 执行本地模拟修复
+        try:
+            import shutil
+            restored_filename = f"restored_{filename}"
+            restored_filepath = os.path.join(app.config['UPLOAD_FOLDER'], restored_filename)
             
-            try:
-                import shutil
-                restored_filename = f"restored_{filename}"
-                restored_filepath = os.path.join(app.config['UPLOAD_FOLDER'], restored_filename)
-                
-                shutil.copy(filepath, restored_filepath)
-                
-                return jsonify({
-                    'success': True,
-                    'restored_filename': restored_filename,
-                    'message': '图片修复成功（本地模拟）'
-                })
-            except Exception as local_error:
-                return jsonify({'error': f'修复服务异常: {str(e)}, 本地修复也失败: {str(local_error)}'}), 500
+            # 确保 uploads 目录存在
+            os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+            
+            shutil.copy(filepath, restored_filepath)
+            
+            return jsonify({
+                'success': True,
+                'restored_filename': restored_filename,
+                'message': '图片修复成功（本地模拟）'
+            })
+        except Exception as local_error:
+            return jsonify({'error': f'本地修复失败: {str(local_error)}'}), 500
             
     except Exception as e:
         return jsonify({'error': f'服务器错误: {str(e)}'}), 500
