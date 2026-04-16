@@ -125,6 +125,7 @@ def restore_image():
         # 执行本地图片修复
         try:
             from PIL import Image, ImageEnhance, ImageFilter
+            import numpy as np
             
             restored_filename = f"restored_{filename}"
             restored_filepath = os.path.join(app.config['UPLOAD_FOLDER'], restored_filename)
@@ -136,22 +137,33 @@ def restore_image():
             
             # 打开原始图片
             with Image.open(filepath) as img:
-                # 1. 调整亮度
+                # 转换为 RGB 模式
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                
+                # 1. 降噪处理 - 使用中值滤波
+                img = img.filter(ImageFilter.MedianFilter(size=3))
+                
+                # 2. 调整亮度和对比度
                 enhancer = ImageEnhance.Brightness(img)
-                img = enhancer.enhance(1.1)  # 增加10%亮度
+                img = enhancer.enhance(1.2)  # 增加20%亮度
                 
-                # 2. 调整对比度
                 enhancer = ImageEnhance.Contrast(img)
-                img = enhancer.enhance(1.2)  # 增加20%对比度
+                img = enhancer.enhance(1.3)  # 增加30%对比度
                 
-                # 3. 锐化处理
+                # 3. 颜色平衡 - 调整色阶
+                enhancer = ImageEnhance.Color(img)
+                img = enhancer.enhance(1.1)  # 轻微增强色彩
+                
+                # 4. 锐化处理 - 更强烈的锐化
                 img = img.filter(ImageFilter.SHARPEN)
+                img = img.filter(ImageFilter.UnsharpMask(radius=3, percent=200, threshold=2))
                 
-                # 4. 再次轻微锐化
-                img = img.filter(ImageFilter.UnsharpMask(radius=2, percent=150, threshold=3))
+                # 5. 细节增强 - 使用边缘增强
+                img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
                 
                 # 保存修复后的图片
-                img.save(restored_filepath)
+                img.save(restored_filepath, quality=95)
             
             print(f"本地图片修复成功：{restored_filename}")
             
