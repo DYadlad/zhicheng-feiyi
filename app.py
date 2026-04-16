@@ -140,26 +140,31 @@ def restore_image():
                 if img.mode != 'RGB':
                     img = img.convert('RGB')
                 
-                # 1. 降噪处理 - 使用中值滤波
+                # 1. 降噪处理 - 多次降噪
+                # 先使用中值滤波去除大噪点
                 img = img.filter(ImageFilter.MedianFilter(size=3))
+                # 再使用高斯模糊平滑小噪点
+                img = img.filter(ImageFilter.GaussianBlur(radius=1))
+                # 再次使用中值滤波巩固降噪效果
+                img = img.filter(ImageFilter.MedianFilter(size=2))
                 
                 # 2. 调整亮度和对比度
                 enhancer = ImageEnhance.Brightness(img)
-                img = enhancer.enhance(1.2)  # 增加20%亮度
+                img = enhancer.enhance(1.15)  # 适度增加亮度
                 
                 enhancer = ImageEnhance.Contrast(img)
-                img = enhancer.enhance(1.3)  # 增加30%对比度
+                img = enhancer.enhance(1.35)  # 增强对比度，突出细节
                 
                 # 3. 颜色平衡 - 调整色阶
                 enhancer = ImageEnhance.Color(img)
-                img = enhancer.enhance(1.1)  # 轻微增强色彩
+                img = enhancer.enhance(1.05)  # 轻微增强色彩，保持自然
                 
-                # 4. 锐化处理 - 更强烈的锐化
-                img = img.filter(ImageFilter.SHARPEN)
-                img = img.filter(ImageFilter.UnsharpMask(radius=3, percent=200, threshold=2))
+                # 4. 锐化处理 - 适度锐化
+                img = img.filter(ImageFilter.UnsharpMask(radius=2, percent=150, threshold=3))
+                # 避免过度锐化导致噪点增强
                 
-                # 5. 细节增强 - 使用边缘增强
-                img = img.filter(ImageFilter.EDGE_ENHANCE_MORE)
+                # 5. 细节增强 - 轻度边缘增强
+                img = img.filter(ImageFilter.EDGE_ENHANCE)  # 使用轻度边缘增强
                 
                 # 保存修复后的图片
                 img.save(restored_filepath, quality=95)
