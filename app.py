@@ -73,50 +73,51 @@ def restore_image():
             image_data = base64.b64encode(f.read()).decode('utf-8')
         
         try:
-            restore_api_url = "https://api.deepai.org/api/torch-srgan"
-            api_key = os.environ.get('DEEPAI_API_KEY', 'D48C22D9-12F7-47BB-810A-98BF3DFB5FCB')
+            # 使用 Hugging Face Inference API
+            hf_api_key = os.environ.get('HUGGING_FACE_API_KEY')
+            hf_model = "stabilityai/stable-diffusion-2-upscale"
             
-            print(f"开始调用 DeepAI API，文件：{filename}")
+            if not hf_api_key:
+                print("Hugging Face API 密钥未设置，使用本地修复")
+                raise Exception("API 密钥未设置")
+            
+            print(f"开始调用 Hugging Face API，文件：{filename}")
+            
+            # 读取图片并编码为 base64
+            with open(filepath, 'rb') as f:
+                image_data = base64.b64encode(f.read()).decode('utf-8')
             
             response = requests.post(
-                restore_api_url,
-                files={'image': open(filepath, 'rb')},
-                headers={'api-key': api_key},
-                timeout=30  # 增加超时时间
+                f"https://api-inference.huggingface.co/models/{hf_model}",
+                headers={
+                    'Authorization': f'Bearer {hf_api_key}',
+                    'Content-Type': 'application/json'
+                },
+                json={
+                    'inputs': image_data
+                },
+                timeout=60  # 增加超时时间
             )
             
-            print(f"DeepAI API 响应状态码: {response.status_code}")
-            print(f"DeepAI API 响应内容: {response.text}")
+            print(f"Hugging Face API 响应状态码: {response.status_code}")
             
             if response.status_code == 200:
-                result = response.json()
-                print(f"DeepAI API 响应：{result}")
+                restored_filename = f"restored_{filename}"
+                restored_filepath = os.path.join(app.config['UPLOAD_FOLDER'], restored_filename)
                 
-                restored_url = result.get('output_url')
+                print(f"保存修复后图片：{restored_filepath}")
                 
-                if restored_url:
-                    print(f"获取修复后图片：{restored_url}")
-                    
-                    restored_response = requests.get(restored_url, timeout=30)
-                    print(f"修复后图片响应状态码：{restored_response.status_code}")
-                    
-                    if restored_response.status_code == 200:
-                        restored_filename = f"restored_{filename}"
-                        restored_filepath = os.path.join(app.config['UPLOAD_FOLDER'], restored_filename)
-                        
-                        print(f"保存修复后图片：{restored_filepath}")
-                        
-                        with open(restored_filepath, 'wb') as f:
-                            f.write(restored_response.content)
-                        
-                        return jsonify({
-                            'success': True,
-                            'restored_filename': restored_filename,
-                            'message': '图片修复成功'
-                        })
+                with open(restored_filepath, 'wb') as f:
+                    f.write(response.content)
+                
+                return jsonify({
+                    'success': True,
+                    'restored_filename': restored_filename,
+                    'message': '图片修复成功（Hugging Face）'
+                })
             
             # 处理 API 错误，直接使用本地模拟修复
-            print(f"API 调用失败，状态码: {response.status_code}，响应：{response.text}，使用本地模拟修复")
+            print(f"API 调用失败，状态码: {response.status_code}，使用本地模拟修复")
             
         except Exception as e:
             print(f"API调用失败，使用本地模拟修复: {str(e)}")
