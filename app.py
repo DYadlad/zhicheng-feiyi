@@ -125,7 +125,6 @@ def restore_image():
         # 执行本地图片修复
         try:
             from PIL import Image, ImageEnhance, ImageFilter
-            import numpy as np
             
             restored_filename = f"restored_{filename}"
             restored_filepath = os.path.join(app.config['UPLOAD_FOLDER'], restored_filename)
